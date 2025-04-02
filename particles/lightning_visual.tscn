@@ -1,0 +1,96 @@
+[gd_scene load_steps=15 format=3 uid="uid://uagysimsyn33"]
+
+[ext_resource type="Shader" uid="uid://2aeqvehv2fpx" path="res://particles/lightning_shader.tres" id="1_bace6"]
+[ext_resource type="Texture2D" uid="uid://d7uhllf0oi2m" path="res://particles/T_VFX_simple_1.png" id="1_g1gso"]
+[ext_resource type="Texture2D" uid="uid://cqkbfb3agnd1y" path="res://particles/thunder affect.png" id="2_g1gso"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_fayy7"]
+blend_mode = 1
+light_mode = 1
+
+[sub_resource type="Curve" id="Curve_8hkho"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.240876, 0), 0.0, 0.0, 0, 0, Vector2(0.470803, 0.987805), 0.0, 0.0, 0, 0, Vector2(0.777372, 0.0406504), 0.0, 0.0, 0, 0, Vector2(1, 0.97561), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_dqrbq"]
+curve = SubResource("Curve_8hkho")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_oi402"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+scale_min = 0.1
+scale_max = 0.1
+scale_curve = SubResource("CurveTexture_dqrbq")
+color = Color(2, 1.2, 0.5, 1)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_xwx6k"]
+blend_mode = 1
+light_mode = 1
+
+[sub_resource type="Curve" id="Curve_1l3gl"]
+_data = [Vector2(0.0145985, 0.479675), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_u0jbv"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_54mug"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_bxy5a"]
+curve_x = SubResource("Curve_1l3gl")
+curve_y = SubResource("Curve_u0jbv")
+curve_z = SubResource("Curve_54mug")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8jw1n"]
+particle_flag_align_y = true
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 5.0
+emission_ring_radius = 5.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+direction = Vector3(0, 1, 0)
+initial_velocity_min = -50.0
+initial_velocity_max = -50.0
+radial_velocity_min = 50.0
+radial_velocity_max = 80.0
+gravity = Vector3(0, 98, 0)
+scale_min = 0.0
+scale_max = 0.01
+scale_curve = SubResource("CurveXYZTexture_bxy5a")
+color = Color(2.2, 1.3, 0.4, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fayy7"]
+shader = ExtResource("1_bace6")
+shader_parameter/vanishing_value = 0.999
+shader_parameter/Speed = Vector2(1, 0)
+shader_parameter/basic_texture = ExtResource("2_g1gso")
+
+[node name="Lightning" type="Node2D"]
+
+[node name="Flare" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_fayy7")
+amount = 1
+texture = ExtResource("1_g1gso")
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_oi402")
+
+[node name="Sparks" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_xwx6k")
+amount = 15
+texture = ExtResource("1_g1gso")
+lifetime = 0.15
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_8jw1n")
+
+[node name="Lightning" type="Line2D" parent="."]
+material = SubResource("ShaderMaterial_fayy7")
+scale = Vector2(1.002, 1)
+points = PackedVector2Array(0, 0, 0, 50)
+width = 20.0
+default_color = Color(1.8, 1.2, 0.22, 1)
+texture_mode = 2

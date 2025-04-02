@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://byv1ywkex3lsy"]
+
+[ext_resource type="Texture2D" uid="uid://cb0cu6qey48og" path="res://addons/kenney_particle_pack/fire_01.png" id="1_bwv4b"]
+
+[sub_resource type="Gradient" id="Gradient_5ltu8"]
+offsets = PackedFloat32Array(0.123404, 0.404255, 0.731915)
+colors = PackedColorArray(0.678431, 0, 0, 0.403922, 0.850894, 0.37452, 0.161987, 0.54902, 1, 1, 0.294118, 0.580392)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_x6ecg"]
+gradient = SubResource("Gradient_5ltu8")
+
+[sub_resource type="Curve" id="Curve_icfi2"]
+_data = [Vector2(0.0474453, 0), 0.0, 0.0, 0, 0, Vector2(0.208029, 0.49187), 0.0, 0.0, 0, 0, Vector2(0.339416, 0.829268), 0.0, 0.0, 0, 0, Vector2(0.441606, 0.955284), 0.0, 0.0, 0, 0, Vector2(0.631387, 0.97561), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 6
+
+[sub_resource type="CurveTexture" id="CurveTexture_eo6dx"]
+width = 2048
+curve = SubResource("Curve_icfi2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_r2yji"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(0, -1, 0)
+emission_shape_scale = Vector3(0, -1, 1)
+emission_shape = 1
+emission_sphere_radius = 45.71
+angle_min = -45.0
+angle_max = 45.0
+inherit_velocity_ratio = 30.0
+direction = Vector3(0, -1, 0)
+spread = 0.0
+initial_velocity_min = 90.0
+initial_velocity_max = 110.0
+angular_velocity_min = -1.60933e-05
+angular_velocity_max = 32.0
+gravity = Vector3(0, -300, 0)
+linear_accel_min = -24.71
+linear_accel_max = 15.52
+radial_accel_min = 56.32
+radial_accel_max = 89.66
+scale_curve = SubResource("CurveTexture_eo6dx")
+color_ramp = SubResource("GradientTexture1D_x6ecg")
+
+[node name="Node2D" type="Node2D"]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(0, -1)
+texture = ExtResource("1_bwv4b")
+process_material = SubResource("ParticleProcessMaterial_r2yji")

@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://cea8kt0cs3e2w"]
+
+[ext_resource type="Texture2D" uid="uid://byih3nljqqsc5" path="res://particles/Flame.png" id="1_by1ht"]
+
+[sub_resource type="Gradient" id="Gradient_svl11"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.146667, 0.463333, 0.73, 0.86, 1)
+colors = PackedColorArray(1, 0.690196, 0, 0, 1, 0.725515, 0, 0.915025, 1, 0.690196, 0, 1, 1, 0, 0, 0.811765, 1.00035, 0.0266287, -0.000807744, 0.843896, 0.988235, 0.0431373, 0.027451, 0.0509804)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(-2, 0)
+amount = 20
+texture = ExtResource("1_by1ht")
+explosiveness = 0.1
+lifetime_randomness = 0.3
+direction = Vector2(0, -1)
+spread = 15.91
+gravity = Vector2(0, 0)
+initial_velocity_min = 194.44
+initial_velocity_max = 270.2
+angular_velocity_min = -14.54
+angular_velocity_max = 341.81
+scale_amount_min = 0.25
+color_ramp = SubResource("Gradient_svl11")

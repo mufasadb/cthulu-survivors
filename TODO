@@ -1,0 +1,40 @@
+[] add multiplayer
+	[] instantiate users
+	[] seperate controls
+	[] sycn movement
+	[] sync spells
+	[] sync damage on signals
+
+[] make a signal bus
+	[] hook the old signals up to the bus
+
+[] menu - with host game or start game
+
+[] hook up sounds
+	[] enemy attack
+	[] lightning attack
+	[] player walk
+	[] player hurt
+	[] player death
+	[] music
+[] flash when hurt
+[] add mana
+[] use spell on cycle
+[] add a support
+	[] make the support resource
+	[] make the support file
+	[] make the manager check for a support and what it can affect
+
+[] make inventory
+	[] make inventory frame
+	[] make spell slot frame
+	[] drag and drop behaviour
+
+[] create a level up system
+
+[] create on-hover buttons
+
+
+[] create a dark and gloomy shader, maybe fog
+[] create more bad guys
+[] create a boss

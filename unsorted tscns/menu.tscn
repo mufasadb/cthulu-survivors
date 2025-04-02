@@ -1,0 +1,92 @@
+[gd_scene load_steps=4 format=3 uid="uid://d28klspuf3m2m"]
+
+[ext_resource type="Script" uid="uid://cugml032jacr6" path="res://MainMenu.gd" id="1_hpuxy"]
+[ext_resource type="Texture2D" uid="uid://2qvuw1nn7i21" path="res://assets/ChatGPT Image Mar 30, 2025, 03_53_37 PM.png" id="2_bilac"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_wx8kx"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hpuxy")
+
+[node name="Splash" type="Sprite2D" parent="."]
+position = Vector2(960, 587.4)
+scale = Vector2(1.25, 1.248)
+texture = ExtResource("2_bilac")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -864.0
+offset_top = -486.0
+offset_right = 864.0
+offset_bottom = 486.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -816.0
+offset_top = -459.0
+offset_right = 816.0
+offset_bottom = 459.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Result" type="RichTextLabel" parent="Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+text = "OMG you did great sweety"
+fit_content = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="NewGameButton" type="Button" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "New Game"
+icon = SubResource("CanvasTexture_wx8kx")
+
+[node name="HostGameButton" type="Button" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Host Game
+"
+
+[node name="JoinGameButton" type="Button" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Join Game"
+
+[node name="Node" type="Node" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="SettingsButton" type="Button" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Settings"
+
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HostGameButton" to="." method="_on_host_game_button_pressed"]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/JoinGameButton" to="." method="_on_join_game_button_pressed"]

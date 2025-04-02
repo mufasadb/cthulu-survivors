@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ActionResource" load_steps=2 format=3 uid="uid://dxk06gd46jhw8"]
+
+[ext_resource type="Script" uid="uid://dtlqgyc1gr5uq" path="res://player/Actions/action_resource.gd" id="1_51tt1"]
+
+[resource]
+script = ExtResource("1_51tt1")
+name = "Chain Lightning"
+tags = Array[int]([4])
+damage = 1
+circle_radius = 0
+collidable = true
+mana_cost = 2
+scene_path = "res://player/Actions/ChainLightningScene.tscn"
+cooldown = 0.01
+metadata/_custom_type_script = "uid://dtlqgyc1gr5uq"

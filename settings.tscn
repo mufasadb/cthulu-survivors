@@ -1,0 +1,118 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdrlitjcinpyh"]
+
+[ext_resource type="Script" uid="uid://cshcfj8lwuohg" path="res://settings.gd" id="1_x2hje"]
+[ext_resource type="AudioStream" uid="uid://cqq1kpe4el46h" path="res://assets/sounds/1-Dark Fantasy Studio- Ancient gods.wav" id="2_nkug2"]
+
+[node name="settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_x2hje")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_nkug2")
+autoplay = true
+bus = &"BGM"
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -587.5
+offset_top = -393.0
+offset_right = 587.5
+offset_bottom = 393.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -541.5
+offset_top = -360.0
+offset_right = 538.5
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Volume_Label" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Volume
+"
+
+[node name="Volume" type="HSlider" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Mute" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Mute"
+
+[node name="Mute Checkbox" type="CheckBox" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Mute Checkbox"
+
+[node name="Volume_Label2" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "SFX Volume"
+
+[node name="SFXVolume" type="HSlider" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Volume_Label3" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Background Music Volume
+"
+
+[node name="BGMVolume" type="HSlider" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Resolution" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Select A resolution"
+
+[node name="Resolutions" type="OptionButton" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+item_count = 4
+popup/item_0/text = "1280x700"
+popup/item_0/id = 2
+popup/item_1/text = "1920x1080"
+popup/item_1/id = 0
+popup/item_2/text = "2560x1080"
+popup/item_2/id = 4
+popup/item_3/text = "3440x1440"
+popup/item_3/id = 3
+
+[node name="FullScreen Label" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Display Window Options
+"
+
+[node name="Fullscreen" type="OptionButton" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+item_count = 3
+popup/item_0/text = "Windowed"
+popup/item_0/id = 0
+popup/item_1/text = "Fullscreen (who is actually choosing this?)"
+popup/item_1/id = 1
+popup/item_2/text = "Borderless"
+popup/item_2/id = 2
+
+[connection signal="value_changed" from="Panel/MarginContainer/VBoxContainer/Volume" to="." method="_on_master_volume_value_changed"]
+[connection signal="toggled" from="Panel/MarginContainer/VBoxContainer/Mute Checkbox" to="." method="_on_mute_c_heckbox_toggled"]
+[connection signal="value_changed" from="Panel/MarginContainer/VBoxContainer/SFXVolume" to="." method="_on_sfx_volume_value_changed"]
+[connection signal="value_changed" from="Panel/MarginContainer/VBoxContainer/BGMVolume" to="." method="_on_bgm_volume_value_changed"]
+[connection signal="item_selected" from="Panel/MarginContainer/VBoxContainer/Resolutions" to="." method="_on_resolutions_item_selected"]
+[connection signal="item_selected" from="Panel/MarginContainer/VBoxContainer/Fullscreen" to="." method="_on_fullscreen_item_selected"]

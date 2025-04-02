@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://6wm4sqexgdpr"]
+
+[ext_resource type="Script" uid="uid://dqalbgj38ek4u" path="res://unsorted scripts/exp_ball.gd" id="1_bk514"]
+[ext_resource type="Texture2D" uid="uid://xqkiyvb2jsqe" path="res://particles/T_basic1_vfx.PNG" id="1_y6m88"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_y6m88"]
+blend_mode = 1
+
+[node name="exp_ball" type="Node2D" groups=["exp_balls"]]
+script = ExtResource("1_bk514")
+
+[node name="ball" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 2, 1)
+material = SubResource("CanvasItemMaterial_y6m88")
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_y6m88")
