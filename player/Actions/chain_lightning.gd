@@ -68,7 +68,7 @@ func execute(target_method := TargetMethods.CLOSEST, _damage := 0):
 			finish_action()
 
 
-func _process(delta):
+func _process(_delta):
 	if hit_targets.size() > 0:
 		lineNode.points.clear()
 		#move the visuals to the last target

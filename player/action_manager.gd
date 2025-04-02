@@ -9,6 +9,7 @@ extends Node
 # Internal state
 var cooldown_timers: Array = []
 var parent: Node # The entity this component is attached to
+var player_is_firing_action_slot: int = -1 
 
 # --- Initialization ---
 func _ready():
@@ -19,12 +20,19 @@ func _ready():
 	cooldown_timers.resize(action_slots.size())
 	cooldown_timers.fill(0.0)
 
+	# Connect signals
+	SignalBus.player_fired_ability.connect(_execute_action)
+		
 
 func _process(delta):
 	# Update cooldowns
 	for i in range(cooldown_timers.size()):
 		if cooldown_timers[i] > 0:
 			cooldown_timers[i] -= delta
+	if player_is_firing_action_slot != -1:
+		SignalBus.player_fired_ability.emit(action_slots[slot_index], self)
+
+		
 
 # --- Public API ---
 
@@ -65,15 +73,11 @@ func can_use_action(slot_index: int) -> bool:
 	if not active_resource: return false # No action equipped
 	if cooldown_timers[slot_index] > 0: return false # On cooldown
 	
-	# Check cost (placeholder - implement based on your stats system)
-	# var mana_cost = active_resource.mana_cost if active_resource.has("mana_cost") else 0
-	# if owner_node.current_mana < mana_cost: return false 
-	
 	return true
 
 #listen for input of "fire" to trigger action
 func _input(event):
-	if event.is_action_pressed("fire"):
+	if event.is_action_pressed("fire") and is_multiplayer_authority():
 		print("tried to fire")
 		try_use_action(0)
 
@@ -84,46 +88,33 @@ func try_use_action(slot_index: int):
 	if not can_use_action(slot_index):
 		print("Cannot use action in slot ", slot_index)
 		return
-
+	player_is_firing_action_slot = slot_index
 	# --- Decide Action Behavior based on Support ---
 
 		# No support or invalid support resource, execute active action directly
-	var executed_successfully = _execute_action(action_slots[slot_index], parent)
-
-	# --- Post-Execution ---
-	if executed_successfully:
-		# Apply cooldown
-		if action_slots[slot_index].cooldown == 0:
-			push_error("Action ", action_slots[slot_index].action_name, " has no cooldown.")
-			return
-		var cooldown = action_slots[slot_index].cooldown if action_slots[slot_index].cooldown else 1.0
-		cooldown_timers[slot_index] = cooldown
-		
-		# Deduct cost (placeholder)
-		# var mana_cost = active_resource.mana_cost if active_resource.has("mana_cost") else 0
-		# owner_node.current_mana -= mana_cost
-		
-		print("Action ", action_slots[slot_index].name, " used.")
+	# var executed_successfully = _execute_action(action_slots[slot_index], parent)
+	# SignalBus.player_fired_ability.emit(action_slots[slot_index], self)
 
 
-# --- Internal Execution Helpers ---
+func _execute_action(resource: ActionResource, casters_action_manager: Node):
+	#check if it was me who cast it, or it was another caster
 
-# Executes a standard action, potentially with modifications
-func _execute_action(resource: ActionResource, caster: Node) -> bool:
+	var caster = casters_action_manager.parent
+	print("executing action: ", resource)
 	if not resource.scene_path or resource.scene_path == "":
 		push_error("ActionResource missing scene_path: ", resource)
-		return false
+		return
 		
 	var scene = load(resource.scene_path)
 	if not scene:
 		push_error("Failed to load action scene: ", resource.scene_path)
-		return false
+		return
 		
 	var action_instance = scene.instantiate()
 	if not action_instance is BaseAction:
 		push_error("Instantiated scene root is not BaseAction: ", resource.scene_path)
 		action_instance.queue_free() # Clean up wrong instance
-		return false
+		return
 
 	# Apply modifications BEFORE setting caster/resource or calling execute
 	
@@ -139,8 +130,20 @@ func _execute_action(resource: ActionResource, caster: Node) -> bool:
 	action_instance.caster = caster
 	# Execute
 	action_instance.execute(BaseAction.TargetMethods.CLOSEST, resource.damage)
-	return true
+	
+	return
 
+	# if action_slots[slot_index].cooldown == 0:
+	# 	push_error("Action ", action_slots[slot_index].action_name, " has no cooldown.")
+	# 	return
+	# var cooldown = action_slots[slot_index].cooldown if action_slots[slot_index].cooldown else 1.0
+	# cooldown_timers[slot_index] = cooldown
+		
+		# Deduct cost (placeholder)
+		# var mana_cost = active_resource.mana_cost if active_resource.has("mana_cost") else 0
+		# owner_node.current_mana -= mana_cost
+		
+	
 # Deploys a totem based on support resource config
 # func _deploy_totem(active_res: ActionResource, support_res: ActionResource, target_data: Dictionary) -> bool:
 # 	if not support_res.has("deployment_scene_path") or support_res.deployment_scene_path == "":

@@ -554,9 +554,9 @@ character_node = NodePath("..")
 
 [node name="RunState" type="Node" parent="StateManager" node_paths=PackedStringArray("idle_state", "attacking_state")]
 script = ExtResource("123_wqn2f")
-animation_name = "Run"
 idle_state = NodePath("../IdleState")
 attacking_state = NodePath("../AttackState")
+animation_name = "Run"
 
 [node name="IdleState" type="Node" parent="StateManager" node_paths=PackedStringArray("enemy_run_state", "attacking_state")]
 script = ExtResource("124_k3d7f")

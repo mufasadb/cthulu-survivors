@@ -1,9 +1,8 @@
-[gd_resource type="TileSet" load_steps=21 format=3 uid="uid://k4t5gu1kd1ln"]
+[gd_resource type="TileSet" load_steps=20 format=3 uid="uid://k4t5gu1kd1ln"]
 
 [ext_resource type="Texture2D" uid="uid://cs21x7i8ju0dn" path="res://assets/tilemap/Terrain/Ground/Tilemap_Flat.png" id="1_p0366"]
 [ext_resource type="Texture2D" uid="uid://d2stokjnnibmd" path="res://assets/tilemap/Terrain/Ground/Tilemap_Elevation.png" id="2_hobn4"]
 [ext_resource type="Texture2D" uid="uid://bptx2kt7xkqqe" path="res://assets/tilemap/Terrain/Water/Foam/Foam.png" id="3_mjrc7"]
-[ext_resource type="Texture2D" uid="uid://cvmb4bdg1ysrp" path="res://assets/tilemap/Terrain/Water/Water.png" id="4_7y6if"]
 [ext_resource type="Texture2D" uid="uid://cwrgns6yhw8yg" path="res://assets/tilemap/Terrain/Water/Rocks/Rocks_01.png" id="5_k61v0"]
 [ext_resource type="Texture2D" uid="uid://c3wpgnor37uig" path="res://assets/tilemap/Terrain/Water/Rocks/Rocks_02.png" id="6_0gax6"]
 [ext_resource type="Texture2D" uid="uid://bpwnakclk5olj" path="res://assets/tilemap/Terrain/Water/Rocks/Rocks_03.png" id="7_rgbm4"]
@@ -221,10 +220,8 @@ texture_region_size = Vector2i(64, 64)
 1:2/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jf1by"]
-texture = ExtResource("4_7y6if")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_upfwc"]
 texture = ExtResource("5_k61v0")

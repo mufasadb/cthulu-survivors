@@ -39,7 +39,6 @@ func update_bar() -> void:
 	label.text = str(current_value) + "/" + str(max_value)
 	label.modulate = text_color
 
-	print("updating size of " + name + " to " + str(Vector2(custom_width, custom_height)))
 	#update size
 	_update_bar_size()
 

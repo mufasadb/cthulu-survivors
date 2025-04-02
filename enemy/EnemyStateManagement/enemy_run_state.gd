@@ -5,7 +5,7 @@ extends EnemyState
 
 
 
-func _process_physics(delta) -> EnemyState:
+func _process_physics(_delta) -> EnemyState:
 	parent.target = parent.find_nearest_player()
 	if not parent.target:
 		return idle_state

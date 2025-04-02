@@ -15,6 +15,9 @@ var _current_health: int:
 signal health_change_signal
 signal health_total_change_signal
 	
+func _enter_tree():
+	set_multiplayer_authority(name.to_int())
+
 func _ready():
 	ArenaState.attach_player(self)
 	if textSpaffer:
@@ -23,14 +26,12 @@ func _ready():
 		push_error("no text spaffer")
 	_current_health = character_health
 	_max_health = character_health
-	set_multiplayer_authority(name.to_int())
 
 func _physics_process(_delta):
-	_movement()
+	_movement(_delta)
 
 	
-
-func _movement():
+func _movement(_delta):
 	if is_multiplayer_authority():
 		var x_mov = Input.get_action_strength("right") - Input.get_action_strength("left")
 		var y_mov = Input.get_action_strength("down") - Input.get_action_strength("up")

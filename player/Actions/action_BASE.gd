@@ -58,10 +58,10 @@ func _ready():
     # Connect signals from child nodes (AnimationPlayer, Timer, etc.) if needed.
     pass
 
-func _process(delta):
+func _process(_delta):
     # Base processing logic if needed (rarely used directly here).
     pass
 
-func _physics_process(delta):
+func _physics_process(_delta):
     # Base physics logic if needed (rarely used directly here).
     pass

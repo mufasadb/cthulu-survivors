@@ -1,8 +1,8 @@
 # AudioManager.gd (Conceptual Structure)
 extends Node
 
-@onready var bgm_player: AudioStreamPlayer = $BGMPlayer
-@onready var sfx_players: Array[AudioStreamPlayer] = [$SFXPlayer1, $SFXPlayer2, $SFXPlayer3, $SFXPlayer4, $SFXPlayer5] # Add more as needed
+@onready var bgm_player: AudioStreamPlayer = self.get_node("BGMPlayer")
+@onready var sfx_players: Array[AudioStreamPlayer] = [self.get_node("SFXPlayer1"), self.get_node("SFXPlayer2")]
 
 const BGM_BUS_NAME = "BGM" # Match your bus names
 const SFX_BUS_NAME = "SFX"
@@ -12,14 +12,14 @@ func _ready():
 	pass
 
 # --- Volume ---
-func set_master_volume(volume_db : float):
+func set_master_volume(volume_db: float):
 	AudioServer.set_bus_volume_db(0, volume_db) # Bus 0 is usually Master
 
-func set_bgm_volume(volume_db : float):
+func set_bgm_volume(volume_db: float):
 	var bus_idx = AudioServer.get_bus_index(BGM_BUS_NAME)
 	if bus_idx != -1: AudioServer.set_bus_volume_db(bus_idx, volume_db)
 
-func set_sfx_volume(volume_db : float):
+func set_sfx_volume(volume_db: float):
 	var bus_idx = AudioServer.get_bus_index(SFX_BUS_NAME)
 	if bus_idx != -1: AudioServer.set_bus_volume_db(bus_idx, volume_db)
 

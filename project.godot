@@ -22,6 +22,7 @@ NodeFinder="*res://unsorted scripts/NodeFinder.gd"
 Refs="*res://refs.gd"
 AudioManager="*res://audio_manager.gd"
 NetworkManager="*res://network_manager.gd"
+SignalBus="*res://signal_bus.gd"
 
 [display]
 
