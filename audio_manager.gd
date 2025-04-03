@@ -1,14 +1,17 @@
 # AudioManager.gd (Conceptual Structure)
 extends Node
 
-@onready var bgm_player: AudioStreamPlayer = self.get_node("BGMPlayer")
-@onready var sfx_players: Array[AudioStreamPlayer] = [self.get_node("SFXPlayer1"), self.get_node("SFXPlayer2")]
+@onready var bgm_player: AudioStreamPlayer = AudioStreamPlayer.new()
+@onready var sfx_players: Array[AudioStreamPlayer] = []
 
 const BGM_BUS_NAME = "BGM" # Match your bus names
 const SFX_BUS_NAME = "SFX"
 
 func _ready():
-	# Load saved volumes, etc.
+	for i in range(5):
+		var player = AudioStreamPlayer.new()
+		player.name = "SFXPlayer" + str(i + 1) 
+		sfx_players.append(player)
 	pass
 
 # --- Volume ---

@@ -33,7 +33,8 @@ func _ready():
 
 
 func find_nearest_player():
-	return NodeFinder.find_closest("players", global_position, 2000, [], NodeFinder.ExclusionType.IGNORE)
+	return NodeFinder.find_closest("players", self.global_position, 2000, [], NodeFinder.ExclusionType.IGNORE)
+
 
 
 func take_damage(amount: int):

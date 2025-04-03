@@ -3,10 +3,14 @@ extends EnemyState
 @export var idle_state: EnemyState
 @export var attacking_state: EnemyState
 
+var check_target_frequency: float = 0.5
+var last_target_check: float = 0
 
-
-func _process_physics(_delta) -> EnemyState:
-	parent.target = parent.find_nearest_player()
+func _process_physics(delta) -> EnemyState:
+	last_target_check += delta
+	if last_target_check < check_target_frequency:
+		parent.target = parent.find_nearest_player()
+		last_target_check = 0
 	if not parent.target:
 		return idle_state
 	#check if they're in attack range and if they are attack

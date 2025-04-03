@@ -87,14 +87,14 @@ func find_highest_health(group: String, pos: Vector2, max_range: float, exclude:
 	return target_node
 
 # Gets POTENTIALLY nearby nodes using physics space query
-func _get_nearby_nodes_physics(space_rid: RID, pos: Vector2, max_range: float, collision_mask: int) -> Array:
+func _get_nearby_nodes_physics(space_rid: RID, pos: Vector2, max_range: float, _collision_mask:= collision_mask) -> Array:
 	var query = PhysicsShapeQueryParameters2D.new()
 	var shape = CircleShape2D.new()
 	shape.radius = max_range
 	
 	query.transform = Transform2D(0.0, pos) # Angle 0, position pos
 	query.shape = shape
-	query.collision_mask = collision_mask # Only detect nodes on these layers
+	query.collision_mask = _collision_mask # Only detect nodes on these layers
 	# query.exclude = [self_rid] # Optional: exclude the querier's physics body RID
 	
 	var space_state = PhysicsServer2D.space_get_direct_state(space_rid)
@@ -140,15 +140,13 @@ func find_closest(group: String, pos: Vector2, max_range: float, exclude: Array 
 	# Get the physics space RID (assuming Node2D context)
 	var space = get_tree().root.world_2d.space
 
-	# 1. Broad Phase: Get only potentially nearby nodes using physics
-	var nearby_nodes = _get_nearby_nodes_physics(space, pos, max_range, collision_mask)
-	
-	# 2. Narrow Phase: Iterate only the smaller 'nearby_nodes' list
+
+	var nodes_to_check = get_tree().get_nodes_in_group(group)
 	var closest_node: Node = null
 	var min_dist_sq = max_range * max_range # Still use range as precise limit
 	var avoidable_nodes_closest: Node = null
 
-	for node in nearby_nodes:
+	for node in nodes_to_check:
 		# Already know it's potentially in range, now check exclusion + precise distance
 		if not is_instance_valid(node):
 			continue

@@ -1,15 +1,13 @@
 class_name ActionComponent
 extends Node
 
-# --- Configuration ---
-# Define slot structure: An array of dictionaries, each holding an active/support pair.
-# ActionResource is assumed to be your custom resource type.
+
 @export var action_slots: Array[ActionResource] = []
 
-# Internal state
+
 var cooldown_timers: Array = []
 var parent: Node # The entity this component is attached to
-var player_is_firing_action_slot: int = -1 
+var player_is_firing_action_slot: int = -1
 
 # --- Initialization ---
 func _ready():
@@ -21,7 +19,7 @@ func _ready():
 	cooldown_timers.fill(0.0)
 
 	# Connect signals
-	SignalBus.player_fired_ability.connect(_execute_action)
+	# SignalBus.player_fired_ability.connect(_execute_action)
 		
 
 func _process(delta):
@@ -30,10 +28,9 @@ func _process(delta):
 		if cooldown_timers[i] > 0:
 			cooldown_timers[i] -= delta
 	if player_is_firing_action_slot != -1:
-		SignalBus.player_fired_ability.emit(action_slots[slot_index], self)
+		_execute_action(action_slots[player_is_firing_action_slot], self)
 
 		
-
 # --- Public API ---
 
 func equip_action(resource: Resource, slot_index: int):
@@ -79,11 +76,12 @@ func can_use_action(slot_index: int) -> bool:
 func _input(event):
 	if event.is_action_pressed("fire") and is_multiplayer_authority():
 		print("tried to fire")
-		try_use_action(0)
+		try_use_action.rpc(0)
 
 
 # Main function to trigger an action from a slot index.
 # target_data: Dictionary potentially containing target node, position, direction etc.
+@rpc("any_peer", "call_local")
 func try_use_action(slot_index: int):
 	if not can_use_action(slot_index):
 		print("Cannot use action in slot ", slot_index)
@@ -97,8 +95,9 @@ func try_use_action(slot_index: int):
 
 
 func _execute_action(resource: ActionResource, casters_action_manager: Node):
+	if casters_action_manager != self:
+		return
 	#check if it was me who cast it, or it was another caster
-
 	var caster = casters_action_manager.parent
 	print("executing action: ", resource)
 	if not resource.scene_path or resource.scene_path == "":
@@ -129,7 +128,8 @@ func _execute_action(resource: ActionResource, casters_action_manager: Node):
 
 	action_instance.caster = caster
 	# Execute
-	action_instance.execute(BaseAction.TargetMethods.CLOSEST, resource.damage)
+	action_instance.execute(resource)
+	player_is_firing_action_slot = -1
 	
 	return
 

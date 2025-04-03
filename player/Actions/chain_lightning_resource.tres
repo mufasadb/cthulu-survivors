@@ -1,6 +1,15 @@
-[gd_resource type="Resource" script_class="ActionResource" load_steps=2 format=3 uid="uid://dxk06gd46jhw8"]
+[gd_resource type="Resource" script_class="ActionResource" load_steps=4 format=3 uid="uid://dxk06gd46jhw8"]
 
 [ext_resource type="Script" uid="uid://dtlqgyc1gr5uq" path="res://player/Actions/action_resource.gd" id="1_51tt1"]
+[ext_resource type="Script" uid="uid://ch1uwg3k7bhon" path="res://player/Actions/line_spell_settings.gd" id="1_kvsob"]
+
+[sub_resource type="Resource" id="Resource_wk4if"]
+script = ExtResource("1_kvsob")
+chain_count = 1
+chain_range = 100.0
+chain_delay = 0.1
+effect_duration = 0.5
+metadata/_custom_type_script = "uid://ch1uwg3k7bhon"
 
 [resource]
 script = ExtResource("1_51tt1")
@@ -12,4 +21,5 @@ collidable = true
 mana_cost = 2
 scene_path = "res://player/Actions/ChainLightningScene.tscn"
 cooldown = 0.01
+line_spell_settings = SubResource("Resource_wk4if")
 metadata/_custom_type_script = "uid://dtlqgyc1gr5uq"

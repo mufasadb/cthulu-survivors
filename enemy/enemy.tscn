@@ -1,4 +1,4 @@
-[gd_scene load_steps=130 format=3 uid="uid://dv4h4tmw8h8gp"]
+[gd_scene load_steps=131 format=3 uid="uid://dv4h4tmw8h8gp"]
 
 [ext_resource type="Script" uid="uid://dp2rfw3vxojn8" path="res://enemy/enemy_character.gd" id="1_ikeac"]
 [ext_resource type="Texture2D" uid="uid://d3l3lwixdi5uo" path="res://assets/enemy/Enemy1/1_enemies_1_attack_000.png" id="2_k3d7f"]
@@ -524,17 +524,25 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_tj4p0"]
 radius = 11.0454
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_dqy00"]
+properties/0/path = NodePath("StateManager:current_state")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:position")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
 [node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("enemy_state_manager", "animations") groups=["enemies", "targets_for_players"]]
 z_index = 3
 motion_mode = 1
 script = ExtResource("1_ikeac")
+enemy_state_manager = NodePath("StateManager")
+animations = NodePath("Visuals")
 movement_speed = 50.0
 _health = 40
 _max_health = 10
 attack_range = 20.0
 attack_cooldown = 3.0
-enemy_state_manager = NodePath("StateManager")
-animations = NodePath("Visuals")
 
 [node name="Visuals" type="AnimatedSprite2D" parent="."]
 physics_interpolation_mode = 1
@@ -585,3 +593,6 @@ rotation = 7.75872e-05
 custom_width = 80
 custom_height = 5
 text_enabled = false
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_dqy00")

@@ -1,0 +1,12 @@
+made in godot 4.4 
+
+
+notes for assets to recreate in since i dont add them here for resource savinv
+
+assets folder has an enemy, with "Enemy1" which contains framed pngs for attacks 1_enemies_1_attack_000.png which were just pulled from a free itch IO for now (sprite sheet)
+
+assets folder has a player is a subfolder "plague_doctor" is a parted up plague doctor from a aesprite with various body parts
+
+it has sounds, unsorted for now
+
+it has tilemap with the tinyswords free things

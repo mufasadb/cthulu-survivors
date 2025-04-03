@@ -7,11 +7,11 @@ var exp_ball_scene: PackedScene = preload("res://unsorted tscns/exp_ball.tscn")
 @onready var exp_bar
 @onready var health_bar
 
-var exp: int = 0
+var team_exp: int = 0
 var level: int = 1
 
 func update_bars():
-	var health_bar = %HealthBar
+	health_bar = %HealthBar
 	health_bar.update_max(_players[0]._max_health)
 	health_bar.update_current(_players[0]._current_health, 0)
 
@@ -48,10 +48,10 @@ func enemy_died(position: Vector2, exp_value: int = 1):
 
 
 func add_exp(amount: int):
-	exp += amount
-	if exp >= 100:
+	team_exp += amount
+	if team_exp >= 100:
 		level += 1
-		exp = 0
+		team_exp = 0
 	if not exp_bar:
 		push_error("exp bar not found")
 		return

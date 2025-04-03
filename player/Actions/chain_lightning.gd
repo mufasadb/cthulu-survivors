@@ -24,7 +24,7 @@ var hit_targets: Array[Node] = []
 
 
 # Called externally after instantiation to start the action.
-func execute(target_method := TargetMethods.CLOSEST, _damage := 0):
+func execute(action_resource: ActionResource, target_method := TargetMethods.CLOSEST):
 	if not caster or not is_instance_valid(caster):
 		push_error("ChainLightningAction: Caster is not set or invalid!")
 		finish_action() # Clean up immediately
@@ -41,7 +41,11 @@ func execute(target_method := TargetMethods.CLOSEST, _damage := 0):
 		return
 
 	#set essential properties
-	damage = _damage
+	damage = action_resource.damage
+	chain_count = action_resource.line_spell_settings.chain_count
+	chain_range = action_resource.line_spell_settings.chain_range
+	chain_delay = action_resource.line_spell_settings.chain_delay
+	effect_duration = action_resource.line_spell_settings.effect_duration
 
 	# Reset state for this execution
 	lineNode.points = []

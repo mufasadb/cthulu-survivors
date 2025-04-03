@@ -28,40 +28,40 @@ enum TargetMethods {
 # It contains the core logic for what the action does.
 # target_data: A dictionary containing context like target node,
 #              position, direction, etc., needed for the action.
-func execute(target_method := TargetMethods.CLOSEST, _damage := 0):
-    push_error("The 'execute' method must be overridden in the specific action script!")
-    # Optional: You could put code here that *always* runs for any action,
-    # either before or after calling super.execute() in the child class.
+func execute(action_resource: ActionResource, target_method := TargetMethods.CLOSEST):
+	push_error("The 'execute' method must be overridden in the specific action script!")
+	# Optional: You could put code here that *always* runs for any action,
+	# either before or after calling super.execute() in the child class.
 
 # --- Optional Helper Functions (Examples) ---
 
 # Example: Call this from the extended script when the action is complete
 # to ensure it cleans itself up.
 func finish_action():
-    # Add any other cleanup logic here if needed.
-    queue_free()
+	# Add any other cleanup logic here if needed.
+	queue_free()
 
 # Example: Convenience function to get data from the resource
 func get_damage() -> float:
-    if action_resource and action_resource.has("damage"):
-        return action_resource.damage
-    return 0.0
+	if action_resource and action_resource.has("damage"):
+		return action_resource.damage
+	return 0.0
 
 func get_mana_cost() -> int:
-    if action_resource and action_resource.has("mana_cost"):
-        return action_resource.mana_cost
-    return 0
+	if action_resource and action_resource.has("mana_cost"):
+		return action_resource.mana_cost
+	return 0
 
 # --- Godot Lifecycle Functions (Optional Use) ---
 
 func _ready():
-    # Connect signals from child nodes (AnimationPlayer, Timer, etc.) if needed.
-    pass
+	# Connect signals from child nodes (AnimationPlayer, Timer, etc.) if needed.
+	pass
 
 func _process(_delta):
-    # Base processing logic if needed (rarely used directly here).
-    pass
+	# Base processing logic if needed (rarely used directly here).
+	pass
 
 func _physics_process(_delta):
-    # Base physics logic if needed (rarely used directly here).
-    pass
+	# Base physics logic if needed (rarely used directly here).
+	pass

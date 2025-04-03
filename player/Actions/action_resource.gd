@@ -21,7 +21,10 @@ enum TargetOptions {
 @export var damage: int
 @export var circle_radius: int
 @export var collidable: bool = true
-@export var sound_file : AudioStream
+@export var sound_file: AudioStream
 @export var mana_cost: int
 @export var scene_path: String
-@export var cooldown: float = 1	
+@export var cooldown: float = 1
+
+@export var line_spell_settings: LineSpellSettings
+@export var projectile_settings: ProjectileSettings

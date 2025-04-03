@@ -14,25 +14,33 @@ func _ready():
 	# spawn enemy 5 times
 	tilemap_layer_to_spawn_on = %Dirt
 
+	if not NetworkManager.is_hosting:
+		return
+	await get_tree().process_frame
 	find_valid_spawn_position()
-	
 	for _i in range(5):
-		call_deferred("spawn_enemy")
+		var spawn_cell = valid_spawn_cells.pick_random()
+		spawn_enemy.rpc(spawn_cell)
 
 
 func _process(delta):
+	if not NetworkManager.is_server():
+		return
 	time += delta
 	if time >= spawn_frequency:
-		spawn_enemy()
+		var spawn_cell = valid_spawn_cells.pick_random()
+		spawn_enemy.rpc(spawn_cell)
 		time = 0
 	
 
-func spawn_enemy():
+@rpc("any_peer", "call_local")
+func spawn_enemy(spawn_cell):
 	var enemy_scene = enemy_scenes.pick_random()
 	var enemy = load(enemy_scene.scene_path).instantiate()
-	game_manager_node.add_child(enemy)
+	game_manager_node.add_child(enemy, true)
+	enemy.global_position = spawn_cell * 64 + Vector2i(32, 32)
 	#assign a random position in the arena
-	enemy.global_position = valid_spawn_cells.pick_random() * 64
+
 
 func find_valid_spawn_position():
 	valid_spawn_cells.clear()

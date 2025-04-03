@@ -6,41 +6,28 @@ var custom_height: int = 1080
 
 @export var player_scene_path: String = "res://player/player.tscn"
 @export var player_scene: PackedScene
-@export var multiplayer_spawner: MultiplayerSpawner
 @export var location_for_players: Node
 @export var debug_id_label: Label
 
 func _ready():
+	NetworkManager.enter_game()
 	ArenaState.exp_bar = %ExpBar
 	if player_scene_path == null:
 		printerr("Player scene not set in Game Scene script!")
 		get_tree().quit() # Or handle appropriately
 		return
-
-	if multiplayer_spawner == null:
-		printerr("MultiplayerSpawner not set in Game Scene script!")
-		get_tree().quit() # Or handle appropriately
-		return
-
+	#for each player in the lobby, add them to the game
 	if NetworkManager.is_hosting:
-		_host_game()
-	else:
-		_join_game()
+		_add_player()
+		for peer in multiplayer.get_peers():
+			_add_player(peer)
+
+	
 	await get_tree().process_frame
 	if %HealthBar:
 		ArenaState.health_bar = %HealthBar
 
-func _host_game():
-		await get_tree().process_frame
-		NetworkManager.start_hosting()
-		multiplayer.peer_connected.connect(_add_player)
-		multiplayer.peer_disconnected.connect(_remove_player)
-		_add_player()
-		
-
-func _join_game():
-	NetworkManager.join_game()
-	print("client started. Waiting for server..")
+	
 
 
 func _add_player(id = 1):

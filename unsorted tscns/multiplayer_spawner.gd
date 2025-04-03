@@ -36,3 +36,4 @@ func spaw_function(scene_path: String, args: Array) -> Node:
 	# Optional: You could pass more data from 'args' to configure the node here
 	# if node.has_method("initialize_player"):
 	#     node.initialize_player(args[1], args[2]) # Example: position, name
+	
