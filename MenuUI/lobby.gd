@@ -1,8 +1,8 @@
 extends Node2D
 
 
-var game_scene: String = "res://unsorted tscns/main_game.tscn"
-var menu_scene: String = "res://unsorted tscns/menu.tscn"
+var game_scene: String = "res://MenuUI/main_game.tscn"
+var menu_scene: String = "res://MenuUI/menu.tscn"
 @export var lobby_player_scene: PackedScene
 @export var start_game: Button = null
 

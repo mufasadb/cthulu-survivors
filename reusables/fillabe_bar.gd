@@ -18,6 +18,7 @@ class_name Fillabe_Bar
 		custom_height = new_value
 		_update_bar_size()
 
+@export var setup_signal: SignalBus.SETUP_ENTITIES = SignalBus.SETUP_ENTITIES.NONE
 var max_value: float = 100
 var current_value: float = 0
 @export var animate_change: bool = true
@@ -27,16 +28,21 @@ var progress_bar: ProgressBar
 var label: Label
 
 func _ready() -> void:
+	print("fillable bar ready")
+	print(setup_signal)
 	progress_bar = $progress_bar
 	label = $text_display
 	update_bar()
+	if setup_signal != -1:
+		print("emitting signal")
+		SignalBus.set_up_entity_signal.emit(self, setup_signal)
 
 func update_bar() -> void:
 	progress_bar.value = current_value
 	progress_bar.max_value = max_value
 	progress_bar.modulate = fill_color
 	label.visible = text_enabled
-	label.text = str(current_value) + "/" + str(max_value)
+	label.text = str(roundi(current_value)) + "/" + str(roundi(max_value))
 	label.modulate = text_color
 
 	#update size
@@ -68,7 +74,7 @@ func update_current(new_current: int, change: int) -> void:
 		current_value = new_current
 		progress_bar.ratio = current_value / max_value
 
-	label.text = str(current_value) + "/" + str(max_value)
+	label.text = str(roundi(current_value)) + "/" + str(roundi(max_value))
 	# update_bar()
 
 

@@ -115,12 +115,6 @@ func _execute_action(resource: ActionResource, casters_action_manager: Node):
 		action_instance.queue_free() # Clean up wrong instance
 		return
 
-	# Apply modifications BEFORE setting caster/resource or calling execute
-	
-
-	# Set essential properties
-
-	# Add to scene tree (adjust parenting as needed, e.g., owner or world node)
 	#TODO: make this muzzle position
 	parent.add_child(action_instance) # Example: add to owner's parent
 	if action_instance.has_node("Node2D") and caster.has_method("get_global_position"): # Rough position setting

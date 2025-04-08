@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cdrlitjcinpyh"]
 
-[ext_resource type="Script" uid="uid://cshcfj8lwuohg" path="res://settings.gd" id="1_x2hje"]
+[ext_resource type="Script" uid="uid://cshcfj8lwuohg" path="res://MenuUI/settings.gd" id="1_x2hje"]
 [ext_resource type="AudioStream" uid="uid://cqq1kpe4el46h" path="res://assets/sounds/1-Dark Fantasy Studio- Ancient gods.wav" id="2_nkug2"]
 
 [node name="settings" type="Control"]

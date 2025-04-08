@@ -3,7 +3,7 @@
 extends BaseAction
 class_name ChainLightningAction
 
-## Maximum distance to find the first target from the caster.
+## Maximum distance to find the first target from the caste r.
 @export var max_initial_range: float = 300.0
 ## Maximum distance to jump from the current target to the next.
 @export var chain_range: float = 200.0
@@ -24,7 +24,8 @@ var hit_targets: Array[Node] = []
 
 
 # Called externally after instantiation to start the action.
-func execute(action_resource: ActionResource, target_method := TargetMethods.CLOSEST):
+func execute(_action_resource: ActionResource, target_method := TargetMethods.CLOSEST):
+	action_resource = _action_resource
 	if not caster or not is_instance_valid(caster):
 		push_error("ChainLightningAction: Caster is not set or invalid!")
 		finish_action() # Clean up immediately
@@ -109,14 +110,11 @@ func _start_chaining(current_target: Node):
 	_end_chain_effect()
 
 
-# Applies damage or other effects to a single target
 func _apply_effect(target: Node):
-	# Example: Apply damage using data from the ActionResource
 	if target.has_method("take_damage"):
 		if damage > 0:
 			target.take_damage(damage)
 	else: push_error("doesnt have take damage option")
-	# print("Zapped: ", target.name) # Debugging
 
 
 # Finds the nearest node in the "enemies" group within range, excluding specified nodes.

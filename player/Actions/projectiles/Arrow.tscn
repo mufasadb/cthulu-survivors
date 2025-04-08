@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://bwpjn7q3cklil"]
+
+[ext_resource type="Script" uid="uid://cxfpqolx8bbg2" path="res://player/Actions/projectiles/projectile_action.gd" id="1_t5r7v"]
+[ext_resource type="Texture2D" uid="uid://cv2y5t785a6a0" path="res://player/Actions/projectiles/arrow.png" id="2_o164p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hk4aj"]
+size = Vector2(8.41573, 41)
+
+[node name="Area2D" type="Area2D" node_paths=PackedStringArray("collision_shape")]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_t5r7v")
+collision_shape = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -0.5)
+scale = Vector2(0.831776, 1)
+shape = SubResource("RectangleShape2D_hk4aj")
+
+[node name="Visuals" type="Sprite2D" parent="."]
+rotation = 0.771977
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_o164p")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

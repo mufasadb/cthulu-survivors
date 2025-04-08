@@ -14,7 +14,7 @@ var tags: Array[ActionResource.TAGS]
 # The ActionResource containing data (stats, costs, etc.) for this action.
 # Should be set externally after the action scene is instantiated.
 # Assuming you have a custom 'ActionResource' type defined elsewhere.
-var action_resource: Resource
+var action_resource: ActionResource
 
 
 enum TargetMethods {
@@ -28,15 +28,10 @@ enum TargetMethods {
 # It contains the core logic for what the action does.
 # target_data: A dictionary containing context like target node,
 #              position, direction, etc., needed for the action.
-func execute(action_resource: ActionResource, target_method := TargetMethods.CLOSEST):
-	push_error("The 'execute' method must be overridden in the specific action script!")
-	# Optional: You could put code here that *always* runs for any action,
-	# either before or after calling super.execute() in the child class.
+func execute(_action_resource: ActionResource, target_method := TargetMethods.CLOSEST):
+	action_resource = _action_resource
 
-# --- Optional Helper Functions (Examples) ---
 
-# Example: Call this from the extended script when the action is complete
-# to ensure it cleans itself up.
 func finish_action():
 	# Add any other cleanup logic here if needed.
 	queue_free()

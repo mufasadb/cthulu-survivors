@@ -15,7 +15,7 @@ func _process_physics(delta) -> EnemyState:
 		return idle_state
 	#check if they're in attack range and if they are attack
 	if parent.global_position.distance_to(parent.target.global_position) < parent.attack_range:
-		return attacking_state
+		return attacking_state 
 	else:
 		# get direction to target, normalise, then ramp to full speed over 1 second
 		var direction = parent.global_position.direction_to(parent.target.global_position)

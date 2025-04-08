@@ -137,9 +137,6 @@ func all_in_range(group: String, pos: Vector2, max_range: float, exclude: Array 
 
 # --- How you might use it in find_closest (conceptual) ---
 func find_closest(group: String, pos: Vector2, max_range: float, exclude: Array = [], exclusion_type: ExclusionType = ExclusionType.EXCLUDE) -> Node:
-	# Get the physics space RID (assuming Node2D context)
-	var space = get_tree().root.world_2d.space
-
 
 	var nodes_to_check = get_tree().get_nodes_in_group(group)
 	var closest_node: Node = null

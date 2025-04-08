@@ -20,7 +20,7 @@ func _ready():
 	find_valid_spawn_position()
 	for _i in range(5):
 		var spawn_cell = valid_spawn_cells.pick_random()
-		spawn_enemy.rpc(spawn_cell)
+		# spawn_enemy.rpc(spawn_cell)
 
 
 func _process(delta):

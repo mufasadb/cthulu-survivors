@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cstpjdqcj234t"]
 
-[ext_resource type="Script" uid="uid://dmm7xfps8sr8a" path="res://player/Actions/chain_lightning.gd" id="1_07wbc"]
+[ext_resource type="Script" uid="uid://dmm7xfps8sr8a" path="res://player/Actions/spell/chain_lightning.gd" id="1_07wbc"]
 [ext_resource type="PackedScene" uid="uid://uagysimsyn33" path="res://particles/lightning_visual.tscn" id="2_6croc"]
 
 [node name="ActionChainLightning" type="Node2D"]

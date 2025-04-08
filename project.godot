@@ -15,14 +15,18 @@ run/main_scene="uid://d28klspuf3m2m"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://unsorted art assets/icon.svg"
 
+[audio]
+
+buses/default_bus_layout="res://GlobalScripts/default_bus_layout.tres"
+
 [autoload]
 
-ArenaState="*res://unsorted scripts/arena_state.gd"
-NodeFinder="*res://unsorted scripts/NodeFinder.gd"
-Refs="*res://refs.gd"
-AudioManager="*res://audio_manager.gd"
-NetworkManager="*res://network_manager.gd"
-SignalBus="*res://signal_bus.gd"
+ArenaState="*res://GlobalScripts/arena_state.gd"
+NodeFinder="*res://reusables/NodeFinder.gd"
+Refs="*res://GlobalScripts/refs.gd"
+AudioManager="*res://GlobalScripts/audio_manager.gd"
+NetworkManager="*res://GlobalScripts/network_manager.gd"
+SignalBus="*res://GlobalScripts/signal_bus.gd"
 
 [display]
 

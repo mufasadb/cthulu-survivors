@@ -11,7 +11,6 @@ var custom_height: int = 1080
 
 func _ready():
 	NetworkManager.enter_game()
-	ArenaState.exp_bar = %ExpBar
 	if player_scene_path == null:
 		printerr("Player scene not set in Game Scene script!")
 		get_tree().quit() # Or handle appropriately
@@ -24,8 +23,8 @@ func _ready():
 
 	
 	await get_tree().process_frame
-	if %HealthBar:
-		ArenaState.health_bar = %HealthBar
+	print($Arena)
+	SignalBus.set_up_entity_signal.emit($Arena, SignalBus.SETUP_ENTITIES.ARENA_NODE)
 
 	
 
@@ -36,13 +35,11 @@ func _add_player(id = 1):
 	if player_node:
 		player_node.name = str(id)
 		call_deferred("add_child", player_node)
-		print(id)
-		print(NetworkManager.peer.get_unique_id())
 		match id:
-			1: player_node.position = Vector2i(custom_width / 2, custom_height / 2)
-			2: player_node.position = Vector2i(custom_width / 2 + 100, custom_height / 2)
-			3: player_node.position = Vector2i(custom_width / 2 - 100, custom_height / 2)
-			4: player_node.position = Vector2i(custom_width / 2 + 200, custom_height / 2)
+			1: player_node.position = Vector2i(floor(custom_width / 2.0), floor(custom_height / 2.0))
+			2: player_node.position = Vector2i(floor(custom_width / 2.0) + 100, floor(custom_height / 2.0))
+			3: player_node.position = Vector2i(floor(custom_width / 2.0) - 100, floor(custom_height / 2.0))
+			4: player_node.position = Vector2i(floor(custom_width / 2.0) + 200, floor(custom_height / 2.0))
 	else:
 		push_error("Failed to spawn player")
 		player_node.set_multiplayer_authority(id)
@@ -50,7 +47,7 @@ func _add_player(id = 1):
 func _connection_failed():
 	printerr("connection failed")
 	multiplayer.multiplayer_peer = null
-	get_tree().change_scene_to_file("res://unsorted tscns/menu.tscn")
+	get_tree().change_scene_to_file("res://MenuUI/menu.tscn")
 
 func _connected_ok():
 	print("Connected to server!")

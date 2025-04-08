@@ -8,9 +8,9 @@ const DEFAULT_PORT = 135
 var peer = ENetMultiplayerPeer.new()
 
 var multiplayer_spawner: MultiplayerSpawner
-var mutli_spawner_scene: PackedScene = preload("res://unsorted tscns/custom_multiplayer_spawner.tscn")
+var mutli_spawner_scene: PackedScene = preload("res://MenuUI/custom_multiplayer_spawner.tscn")
 
-var lobby_player_scene: String = "res://player/lobby_player.gd"
+var lobby_player_scene: String = "res://MenuUI/lobby_player.gd"
 var game_player_scene: String = "res://player/player.tscn"
 var game_enemy_scene: String = "res://enemy/enemy.tscn"
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://d28klspuf3m2m"]
 
-[ext_resource type="Script" uid="uid://cugml032jacr6" path="res://MainMenu.gd" id="1_hpuxy"]
-[ext_resource type="Texture2D" uid="uid://2qvuw1nn7i21" path="res://assets/ChatGPT Image Mar 30, 2025, 03_53_37 PM.png" id="2_bilac"]
+[ext_resource type="Script" uid="uid://cugml032jacr6" path="res://MenuUI/MainMenu.gd" id="1_hpuxy"]
+[ext_resource type="Texture2D" uid="uid://2qvuw1nn7i21" path="res://MenuUI/ChatGPT Image Mar 30, 2025, 03_53_37 PM.png" id="2_bilac"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_wx8kx"]
 

@@ -5,9 +5,9 @@ extends Control
 # @onready var ip_address_input = $IpAddressInput 
 var ip_address: String = 'localhost'
 
-var game_scene: String = "res://unsorted tscns/main_game.tscn"
+var game_scene: String = "res://MenuUI/main_game.tscn"
 
-var lobby_scene: String = "res://unsorted tscns/lobby.tscn"
+var lobby_scene: String = "res://MenuUI/lobby.tscn"
 
 func _on_new_game_button_pressed():
 	NetworkManager.is_hosting = true

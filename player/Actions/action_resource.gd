@@ -28,3 +28,4 @@ enum TargetOptions {
 
 @export var line_spell_settings: LineSpellSettings
 @export var projectile_settings: ProjectileSettings
+@export var aoe_settings: AOESettings

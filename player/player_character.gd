@@ -3,7 +3,8 @@ class_name Player
 
 
 @export var movement_speed: float = 40.0
-var _max_health: int = 100
+var _max_health: int = 100:
+	get: return _max_health
 var _current_health: int:
 	get: return _current_health
 
@@ -19,13 +20,13 @@ func _enter_tree():
 	set_multiplayer_authority(name.to_int())
 
 func _ready():
-	ArenaState.attach_player(self)
 	if textSpaffer:
 		health_change_signal.connect(textSpaffer.add_text_spaff)
 	else:
 		push_error("no text spaffer")
 	_current_health = character_health
 	_max_health = character_health
+	ArenaState.attach_player(self)
 
 func _physics_process(_delta):
 	_movement(_delta)

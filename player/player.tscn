@@ -5,9 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://dkxa3pvx5dy1h" path="res://assets/player/plague_doctor/plague doctor Right Leg.png" id="3_2hs0m"]
 [ext_resource type="Texture2D" uid="uid://b17f135k6b3w2" path="res://assets/player/plague_doctor/plague doctor Left Leg.png" id="4_hqtel"]
 [ext_resource type="PackedScene" uid="uid://bgtn3ruw0lg6n" path="res://reusables/Damage Numbers.tscn" id="5_qjkh3"]
-[ext_resource type="Script" uid="uid://dxslfhmk861uw" path="res://player/action_manager.gd" id="6_g6k8r"]
+[ext_resource type="Script" uid="uid://dxslfhmk861uw" path="res://player/Actions/action_manager.gd" id="6_g6k8r"]
 [ext_resource type="Script" uid="uid://dtlqgyc1gr5uq" path="res://player/Actions/action_resource.gd" id="7_rgyib"]
-[ext_resource type="Resource" uid="uid://dxk06gd46jhw8" path="res://player/Actions/chain_lightning_resource.tres" id="8_hg6s5"]
+[ext_resource type="Script" uid="uid://peyag4a5sp72" path="res://player/Actions/projectiles/projectile_settings.gd" id="8_rgyib"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_px5sl"]
 load_path = "res://.godot/imported/plague doctor Head.png-c8c6da43f81e04b7ab402d5258278fa8.ctex"
@@ -165,183 +165,64 @@ tracks/11/keys = {
 "values": [0.0]
 }
 
-[sub_resource type="Animation" id="Animation_sweqy"]
-resource_name = "run"
-loop_mode = 1
+[sub_resource type="Animation" id="Animation_rgyib"]
+resource_name = "Run"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../../PlagueDoctorBody:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../../PlagueDoctorBody/PlagueDoctorHead:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../../PlagueDoctorBody/PlagueDoctorLeftHand:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../../PlagueDoctorBody/PlagueDoctorRightLeg:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(-6, -1), Vector2(-3, 0), Vector2(4, -1), Vector2(0, 0)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../../PlagueDoctorBody/PlagueDoctorLeftLeg:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.5, 0.733333, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(9, -2), Vector2(6, 0), Vector2(-3, -2), Vector2(0, 0)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("../../PlagueDoctorBody/PlagueDoctorRightHand:position")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("../../PlagueDoctorBody:rotation")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 0.0, 0.0, 0.0, 0.0]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("../../PlagueDoctorBody/PlagueDoctorHead:rotation")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [-0.00205376, -0.0523599, 0.0, 0.0523599, -0.00205376]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("../../PlagueDoctorBody/PlagueDoctorLeftHand:rotation")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [0.0, -0.0523599, 0.0, 0.0523599, 0.0]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("../../PlagueDoctorBody/PlagueDoctorRightLeg:rotation")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [0.0, -0.0349066, 0.0, 0.0349066, 0.0]
-}
-tracks/10/type = "value"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("../../PlagueDoctorBody/PlagueDoctorLeftLeg:rotation")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 0.0523599, 0.0, 0.0523599, 0.0]
-}
-tracks/11/type = "value"
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/path = NodePath("../../PlagueDoctorBody/PlagueDoctorRightHand:rotation")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 0.0523599, 0.0, -0.0523599, 0.0]
-}
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_8t03j"]
-resource_local_to_scene = true
-
-[sub_resource type="Animation" id="Animation_hg6s5"]
-resource_name = "flash"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../..:material")
+tracks/0/path = NodePath("../../PlagueDoctorBody/PlagueDoctorLeftLeg:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [SubResource("ShaderMaterial_8t03j")]
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../PlagueDoctorBody/PlagueDoctorLeftLeg:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.51),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.122173]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1jxqw"]
 _data = {
 &"RESET": SubResource("Animation_2hs0m"),
-&"Run": SubResource("Animation_sweqy"),
-&"flash": SubResource("Animation_hg6s5")
+&"Run": SubResource("Animation_rgyib")
 }
 
 [sub_resource type="AnimationRootNode" id="AnimationRootNode_pjt0s"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_glpr6"]
 radius = 26.5981
+
+[sub_resource type="Resource" id="Resource_hg6s5"]
+script = ExtResource("8_rgyib")
+flight_speed = 1000.0
+max_pierce_count = 2
+travel_distance = 200.0
+is_tracking = false
+metadata/_custom_type_script = "uid://peyag4a5sp72"
+
+[sub_resource type="Resource" id="Resource_8t03j"]
+script = ExtResource("7_rgyib")
+name = "Arrow"
+tags = Array[int]([])
+damage = 1
+circle_radius = 0
+collidable = true
+mana_cost = 1
+scene_path = "res://player/Actions/projectiles/Arrow.tscn"
+cooldown = 1.0
+projectile_settings = SubResource("Resource_hg6s5")
+metadata/_custom_type_script = "uid://dtlqgyc1gr5uq"
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_rgyib"]
 properties/0/path = NodePath(".:position")
@@ -350,8 +231,10 @@ properties/0/replication_mode = 1
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("textSpaffer") groups=["players"]]
 z_index = 99
+collision_mask = 0
 motion_mode = 1
 script = ExtResource("1_hqtel")
+movement_speed = 60.0
 textSpaffer = NodePath("PlayerTextSpaff")
 
 [node name="Collorizer" type="Node2D" parent="."]
@@ -389,6 +272,7 @@ tree_root = SubResource("AnimationRootNode_pjt0s")
 anim_player = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, -0.999998)
 scale = Vector2(0.639143, 0.639143)
 shape = SubResource("CircleShape2D_glpr6")
@@ -401,7 +285,7 @@ offset_bottom = -100.0
 
 [node name="SpellManager" type="Node" parent="."]
 script = ExtResource("6_g6k8r")
-action_slots = Array[ExtResource("7_rgyib")]([ExtResource("8_hg6s5")])
+action_slots = Array[ExtResource("7_rgyib")]([SubResource("Resource_8t03j")])
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_rgyib")
